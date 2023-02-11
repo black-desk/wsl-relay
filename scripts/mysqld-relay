@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/env bash
 
 if [ -z "${SUDO_USER+x}" ]; then
   echo "mysqld-relay must be run via 'sudo'"
