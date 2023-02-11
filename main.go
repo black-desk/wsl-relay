@@ -22,7 +22,7 @@ var (
 	closeOnStdinEOF = flag.Bool("input-closes", false, "terminate on stdin closes, regardless of pipe state")
 	verbose         = flag.BoolP("verbose", "v", false, "verbose output on stderr")
 	namedPipe       = flag.String("pipe", "", "The name of the pipe you wish to connect to")
-	gpgFile         = flag.String("gpg", "", "To location of your windows GPG agent socket")
+	gpgFile         = flag.String("gpg", "S.gpg-agent", "To location of your windows GPG agent socket")
 )
 
 func underlyingError(err error) error {
@@ -37,8 +37,6 @@ type closeWriter interface {
 }
 
 func main() {
-	flag.Lookup("gpg").NoOptDefVal = "S.gpg-agent"
-
 	flag.Parse()
 
 	var conn io.ReadWriteCloser
