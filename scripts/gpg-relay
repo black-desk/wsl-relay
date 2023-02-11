@@ -1,3 +1,5 @@
 #!/bin/env bash
 
-exec socat UNIX-LISTEN:/home/<your-username>/.gnupg/S.gpg-agent,fork, EXEC:'wsl-relay.exe --input-closes --pipe-closes --gpg',nofork
+local gpgdir=${GPGHOME:-$HOME/.gnupg}
+
+exec socat UNIX-LISTEN:"$gpgdir/S.gpg-agent",fork, EXEC:'wsl-relay.exe --input-closes --pipe-closes --gpg',nofork
